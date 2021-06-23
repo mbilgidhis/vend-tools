@@ -1,0 +1,110 @@
+{
+  "home" : "Home",
+  "@home": {
+    "description" : "Home label."
+  },
+  "product" : "Product",
+  "@product": {
+    "description" : "Product label."
+  },
+  "storeList" : "Store List",
+  "@storeList": {
+    "description" : "Store List label."
+  },
+  "save" : "Save",
+  "@save": {
+    "description" : "Save label."
+  },
+  "addStore" : "Add Store",
+  "@addStore" : {
+    "description" : "Add Store label"
+  },
+  "storeName" : "Store Name",
+  "@storeName" : {
+    "description" : "Store Name label"
+  },
+  "requiredStoreName" : "Store Name can not be empty",
+  "@requiredStoreName" : {
+    "description" : "Store Name required"
+  },
+  "key" : "Personal Token",
+  "@key" : {
+    "description" : "Personal Token label"
+  },
+  "requiredKey" : "Personal Token can not be empty",
+  "@requiredKey" : {
+    "description" : "Personal Token required"
+  },
+  "uri" : "URI",
+  "@uri" : {
+    "description" : "URI label"
+  },
+  "requiredUri" : "URI can not be empty",
+  "@requiredUri" : {
+    "description" : "URI required"
+  },
+  "noStore" : "Please add and activate store first.",
+  "@noStore" : {
+    "description" : "Information if user need to add new store."
+  },
+  "sku" : "SKU",
+  "@sku" : {
+    "description" : "SKU label"
+  },
+  "requiredSku" : "SKU can not be empty",
+  "@requiredSku" : {
+    "description" : "SKU required"
+  },
+  "search" : "Search",
+  "@search" : {
+    "description" : "Search label"
+  },
+  "url" : "URL",
+  "@url" : {
+    "description" : "URL label"
+  },
+  "price" : "Price",
+  "@price" : {
+    "description" : "Price label"
+  },
+  "failedHttp" : "Failed to load data",
+  "@failedHttp" : {
+    "description" : "API call failed label"
+  },
+  "id" : "ID",
+  "@id" : {
+    "description" : "ID label"
+  },
+  "variant" : "Variant",
+  "@variant" : {
+    "description" : "Variant label"
+  },
+  "priceWoTax" : "Price without Tax",
+  "@priceWoTax" : {
+    "description" : "Price without Tax label"
+  },
+  "priceWTax" : "Price with Tax",
+  "@priceWTax" : {
+    "description" : "Price with Tax label"
+  },
+  "priceBook" : "Price Book",
+  "@priceBook" : {
+    "description" : "Price Book label"
+  },
+  "to" : "To",
+  "@to" : {
+    "description" : "To label"
+  },
+  "from" : "From",
+  "@from" : {
+    "description" : "From label"
+  },
+  "priceBookDetail" : "Price Book Detail",
+  "@priceBookDetail" : {
+    "description" : "Price Book Detail label"
+  },
+  "productDetail" : "Product Detail",
+  "@productDetail" : {
+    "description" : "Product Detail label"
+  }
+}
