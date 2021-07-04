@@ -106,5 +106,21 @@
   "productDetail" : "Product Detail",
   "@productDetail" : {
     "description" : "Product Detail label"
+  },
+  "sureTitle" : "Are you sure?",
+  "@sureTitle" : {
+    "description" : "Confirmation Title"
+  },
+  "sureDescription" : "Do you want to exit an App?",
+  "@sureDescription" : {
+    "description" : "Confirmation Description"
+  },
+  "yes" : "Yes",
+  "@yes" : {
+    "description" : "Confirmation yes"
+  },
+  "no" : "No",
+  "@no" : {
+    "description" : "Confirmation no"
   }
 }
