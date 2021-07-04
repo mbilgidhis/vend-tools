@@ -25,5 +25,9 @@
   "to" : "Hingga",
   "from" : "Dari",
   "priceBookDetail" : "Detil Price Book",
-  "productDetail" : "Detil Produk"
+  "productDetail" : "Detil Produk",
+  "sureTitle" : "Apakah Anda yakin?",
+  "sureDescription": "Apakah Anda yakin untuk keluar dari aplikasi?",
+  "yes" : "Ya",
+  "no" : "Tidak"
 }

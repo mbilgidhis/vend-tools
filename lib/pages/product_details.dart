@@ -11,6 +11,9 @@ import 'package:vend_tools_v2/partials/bottom_navigation.dart';
 import 'package:vend_tools_v2/model/pricebook_detail_vend.dart';
 import 'package:easy_localization/easy_localization.dart';
 
+import 'package:page_transition/page_transition.dart';
+import 'package:vend_tools_v2/pages/product.dart';
+
 class ProductDetails extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
@@ -240,7 +243,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 ),
                 hoverColor: Colors.grey,
                 // onTap: () => _getPriceBookDetailPage(snapshot.data!.data![index].priceBookId.toString()),
-                onTap: () => _popPriceBookDetail(snapshot.data!.data![index].priceBookId.toString()),
+                onTap: () => _popPriceBookDetail(snapshot.data!.data![index].priceBookId.toString(), snapshot.data!.data![index].price.toString()),
               );
             },
           );
@@ -271,6 +274,19 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
     );
   }
 
+  _createPriceBookPrice(data) {
+    return Row(
+      children: [
+        Container(
+          // padding: EdgeInsets.only(left: 10.0, top: 10.0),
+          child: Text(
+            tr('price') + ": " + data.toString(),
+          ),
+        )
+      ],
+    );
+  }
+
   _createPriceBookTo(data) {
     return Row(
       children: [
@@ -297,7 +313,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
     );
   }
 
-  _popPriceBookDetail(String id) {
+  _popPriceBookDetail(String id, String price) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -312,6 +328,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   child: Column(
                     children: [
                       _createPriceBookName(snapshot.data!.data),
+                      _createPriceBookPrice(price),
                       _createPriceBookFrom(snapshot.data!.data),
                       _createPriceBookTo(snapshot.data!.data),
                     ],
@@ -329,40 +346,73 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
     );
   }
 
+  Future<bool> _onWillPop() async {
+    return (await showDialog(
+      context: context,
+      builder: (context) => new AlertDialog(
+        title: Text('sureTitle').tr(),
+        content: Text('sureDescription').tr(),
+        actions: <Widget>[
+          GestureDetector(
+            child: TextButton(
+              child: Text('no').tr(),
+              onPressed: () => Navigator.of(context).pop(false),
+            ),
+            onTap: () => Navigator.of(context).pop(false),
+          ),
+          GestureDetector(
+            child: TextButton(
+              child: Text('yes').tr(),
+              onPressed: () => Navigator.of(context).pop(true),
+            ),
+            onTap: () => Navigator.of(context).pop(true),
+          ),
+        ],
+      ),
+    )) ?? false;
+  }
+
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        centerTitle: true,
+    return WillPopScope(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(widget.title),
+          centerTitle: true,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_outlined),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+        ),
+        body: FutureBuilder(
+          future: _getData(),
+          builder: (BuildContext context, AsyncSnapshot<ProductVend> snapshot) {
+            if (snapshot.hasData) {
+              return SingleChildScrollView(
+                child: Column(
+                  children: [
+                    _createInfoName(snapshot.data!.data),
+                    _createImageProduct(snapshot.data!.data),
+                    _createId(snapshot.data!.data),
+                    _createSku(snapshot.data!.data),
+                    _createInfoVariantName(snapshot.data!.data),
+                    _createDescription(snapshot.data!.data),
+                    _createPriceExcludingTax(snapshot.data!.data),
+                    _createPriceIncludingTax(snapshot.data!.data),
+                    _createPriceBookLabel(),
+                    _createPriceBookData(),
+                  ],
+                ),
+              );
+            } else {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          },
+        ),
+        bottomNavigationBar: NavigationBar(index: 1,),
       ),
-      body: FutureBuilder(
-        future: _getData(),
-        builder: (BuildContext context, AsyncSnapshot<ProductVend> snapshot) {
-          if (snapshot.hasData) {
-            return SingleChildScrollView(
-              child: Column(
-                children: [
-                  _createInfoName(snapshot.data!.data),
-                  _createImageProduct(snapshot.data!.data),
-                  _createId(snapshot.data!.data),
-                  _createSku(snapshot.data!.data),
-                  _createInfoVariantName(snapshot.data!.data),
-                  _createDescription(snapshot.data!.data),
-                  _createPriceExcludingTax(snapshot.data!.data),
-                  _createPriceIncludingTax(snapshot.data!.data),
-                  _createPriceBookLabel(),
-                  _createPriceBookData(),
-                ],
-              ),
-            );
-          } else {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        },
-      ),
-      bottomNavigationBar: NavigationBar(index: 1,),
+      onWillPop: _onWillPop,
     );
   }
 }
